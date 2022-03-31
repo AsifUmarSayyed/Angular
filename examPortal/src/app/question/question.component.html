@@ -1,0 +1,34 @@
+<div class="container">
+    <div class="row">
+            <h1>{{currentTests[0]?.name}}</h1>
+      
+        <div class="col-md-12">
+         
+            <div class="panel panel-default">
+              
+                <div class="panel-body" >
+                    <form>
+                       
+                        <label>{{options[counter]?.questionText}}</label>
+                        <div class="radio"  *ngFor="let item of options[counter]?.options; index as i;">
+                           
+                                 <label>
+                                     <input *ngIf="options[counter].type"   type="checkbox"  [checked]="i==ans[counter][i]" class="checkBox" name="checkbox" value="i"> 
+                                       <input *ngIf="!options[counter].type" type="radio" [checked]="i==ans[counter]"  class="option" name="option" value="i"> 
+                                       {{item}}
+                                    </label> 
+                        
+                        </div>
+                    </form>
+                </div>
+                <div class="panel-footer">
+                    <a *ngIf="counter>0" (click)="pre()" id="pre" class="pull-left btn btn-success">Prevous</a>
+                    <a *ngIf="counter!=currentTests[0]?.questions.length-1" (click)="next()" id="next"      class="pull-right btn btn-success">Next</a>
+                    <a  *ngIf="counter==currentTests[0]?.questions.length-1" (click)="finish()" id="finish" class="pull-right btn btn-danger">Finish</a>
+
+                </div>
+            </div>  
+           
+        </div>
+    </div>
+</div>
