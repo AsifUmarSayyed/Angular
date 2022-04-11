@@ -9,7 +9,6 @@ const routes: Routes = [
     loadChildren: () =>
       import('./orders/products/products.module').then((m) => m.ProductsModule),
   },
-
   {
     path: 'products',
     loadChildren: () =>

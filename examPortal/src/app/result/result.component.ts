@@ -10,7 +10,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class ResultComponent implements OnInit {
 
   constructor(private http:HttpClient, private router:Router, private activatedRoute:ActivatedRoute) { }
-  counter:any=0
+
   correct:any=0
   dataId:any
   currentTests:any=[]
@@ -19,15 +19,15 @@ export class ResultComponent implements OnInit {
   _id:any
   testCompleted:any=1
   questionId:any=null
-  
+   
   ngOnInit(): void {
-  
+    localStorage.removeItem("checked")  
+    localStorage.removeItem("counter")  
     localStorage.setItem("testCompleted",this.testCompleted);
-    localStorage.setItem("counter",this.counter);
-    localStorage.setItem("ans",this.ans);
+  
+    // localStorage.setItem("ans",this.ans);
     if( localStorage.getItem("correct")){      
       this.correct=JSON.parse(localStorage.getItem("correct")!)
-
     }
 
     this.activatedRoute.params.subscribe(aData=>{
@@ -50,12 +50,34 @@ export class ResultComponent implements OnInit {
       });
       console.log(this.currentTests);
       this.options=this.currentTests[0].questions
+
+
+      
+      this.ans=JSON.parse(localStorage.getItem("ans")!)
+             for (let i = 0; i <  this.ans.length; i++) {
+
+        if( this.ans[i]._id==this._id){
+          let ans:any=[]
+      for (let j = 0; j <   data.tests[i].questions.length; j++) {
+        
+        data.tests[i].questions[j].type=="Multiple-Response"?ans.push([null,null]):ans.push(null);
+       
+    }
+    console.log(ans);
+    
+    this.ans[i].answers=ans
+    localStorage.setItem("ans",JSON.stringify(this.ans));
+    
+
+        }
+      }
+      
         })
   }
 
   next(){
 
-    localStorage.clear()
+    //localStorage.clear()
     this.router.navigate([""])
   }
 

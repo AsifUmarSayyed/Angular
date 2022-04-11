@@ -9,6 +9,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class QuestionComponent implements OnInit {  
 dataId:any
 count:any ;
+activeAns:any=[]
 currentTests:any=[]
 options:any=[]
 counter:any=0
@@ -21,7 +22,9 @@ radio: any = document.getElementsByClassName('option');
 checkBox: any = document.getElementsByClassName('checkBox'); 
 constructor(private http:HttpClient, private router:Router, private activatedRoute:ActivatedRoute) {}
 ngOnInit(): void {
-   localStorage.getItem("testCompleted")? this.router.navigate([""]):"";
+   localStorage.getItem("testCompleted")? this.router.navigate([""]):"";   
+   localStorage.getItem("ans")?this.ans=JSON.parse(localStorage.getItem("ans")!):"";
+ 
    localStorage.getItem("counter")?this.counter=JSON.parse(localStorage.getItem("counter")!):"";
    localStorage.getItem("correct")?this.correct=JSON.parse(localStorage.getItem("correct")!):"";
    this.activatedRoute.params.subscribe(aData=>{     
@@ -37,18 +40,24 @@ ngOnInit(): void {
           .match(this._id.toLocaleLowerCase());
       });    
       this.options=this.currentTests[0].questions  
-      console.log(this.options );
-      
-      if( localStorage.getItem("ans")){      
-        this.ans=JSON.parse(localStorage.getItem("ans")!)
-      }else{
-        for (let i = 0; i < this.currentTests[0].questions.length; i++) this.options[i].type=="Multiple-Response"?this.ans.push([null,null]):this.ans.push(null);
-          localStorage.setItem("ans",JSON.stringify(this.ans))
-      }
-      for (let i = 0; i < this.currentTests[0].questions.length; i++) {
-        this.correctAns.push(this.currentTests[0].questions[i].correctOptionIndex)
-      }
+      console.log(this.options ); 
+
+     
+        this.activeAns = this.ans.filter((res: any) => {
+        return res._id.toLocaleLowerCase()
+        .match(this._id.toLocaleLowerCase());
+       }); 
+       
+         
+      for (let i = 0; i < this.ans.length; i++)this.ans[i]._id==this._id?this.ans[i].answers=this.activeAns[0].answers:""
+      localStorage.setItem("ans",JSON.stringify(this.ans))
+    
+       localStorage.setItem("checked",JSON.stringify( this.activeAns[0].answers))
+       
    })
+      
+   
+    
  }
 next(){      
         this.counter++;
@@ -60,46 +69,80 @@ next(){
     if(this.options[this.counter].type=="Multiple-Response"){    
       let arr:any=[]
       for (let i = 0; i < this.checkBox.length; i++) this.checkBox[i].checked==true?arr.push(i):"";       
-      this.ans[this.counter]=arr
+      this.activeAns[0].answers[this.counter]=arr
+      for (let i = 0; i < this.ans.length; i++)this.ans[i]._id==this._id?this.ans[i].answers=this.activeAns[0].answers:""
       localStorage.setItem("ans",JSON.stringify(this.ans))    
    }
     else{
       let arr:any
       for (let i = 0; i < this.radio.length; i++) this.radio[i].checked==true?arr=i:"";
-      this.ans[this.counter]=arr
-      localStorage.setItem("ans",JSON.stringify(this.ans))  
+      this.activeAns[0].answers[this.counter]=arr
+      for (let i = 0; i < this.ans.length; i++)this.ans[i]._id==this._id?this.ans[i].answers=this.activeAns[0].answers:""
+      localStorage.setItem("ans",JSON.stringify(this.ans))
     }
-   for (let i = 0; i < this.currentTests[0].questions.length; i++)JSON.stringify(this.ans[i])==JSON.stringify(this.correctAns[i])?localStorage.setItem("correct",JSON.stringify(++this.correct)):""
-      this.router.navigate(["result/",this.dataId.id])
+
+    //onsole.log( this.activeAns[0].answers);
+ 
+    localStorage.setItem("checked",JSON.stringify( this.activeAns[0].answers))  
+
+   for (let i = 0; i <  this.ans.length; i++){
+   if(this.ans[i]._id==this._id){
+     for (let j = 0; j < this.ans[i].answers.length; j++) {     
+     
+      
+       if (JSON.stringify(this.ans[i].answers[j])==JSON.stringify(this.ans[i].correctAns[j])) {
+          localStorage.setItem("correct",JSON.stringify(++this.correct))
+        }
    }
+  console.log(this.correct)
+  console.log(this.ans[i].correctAns[i])
+
+  }
+}
+  
+      this.router.navigate(["result/",this.dataId.id])
+   
+   
+    }
  check(){
    if(this.options[this.counter-1].type=="Multiple-Response"){
     let arr:any=[]
       for (let i = 0; i < this.checkBox.length; i++) this.checkBox[i].checked==true?arr.push(i):""
-      this.ans[this.counter-1]=arr
-      localStorage.setItem("ans",JSON.stringify(this.ans)) 
+      this.activeAns[0].answers[this.counter-1]=arr
+      for (let i = 0; i < this.ans.length; i++)this.ans[i]._id==this._id?this.ans[i].answers=this.activeAns[0].answers:""
+      localStorage.setItem("ans",JSON.stringify(this.ans))
    }
    else{
     let arr:any
     for (let i = 0; i < this.radio.length; i++)this.radio[i].checked==true?arr=i:""
-      this.ans[this.counter-1]=arr
-      localStorage.setItem("ans",JSON.stringify(this.ans))
+    this.activeAns[0].answers[this.counter-1]=arr
+    for (let i = 0; i < this.ans.length; i++)this.ans[i]._id==this._id?this.ans[i].answers=this.activeAns[0].answers:""
+    localStorage.setItem("ans",JSON.stringify(this.ans))
     }
+    localStorage.setItem("checked",JSON.stringify( this.activeAns[0].answers))
+
+    //console.log( this.activeAns[0].answers);
+    
  }
 pre(){
   
     if(this.options[this.counter].type=="Multiple-Response"){
      let arr:any=[]
       for (let i = 0; i < this.checkBox.length; i++) this.checkBox[i].checked==true?arr.push(i):""
-      this.ans[this.counter]=arr
-      localStorage.setItem("ans",JSON.stringify(this.ans))     
+      this.activeAns[0].answers[this.counter]=arr
+      for (let i = 0; i < this.ans.length; i++)this.ans[i]._id==this._id?this.ans[i].answers=this.activeAns[0].answers:""
+      localStorage.setItem("ans",JSON.stringify(this.ans))  
     }
     else{
       let arr:any
       for (let i = 0; i < this.radio.length; i++)this.radio[i].checked==true?arr=i:""
-      this.ans[this.counter]=arr
+      this.activeAns[0].answers[this.counter]=arr
+      for (let i = 0; i < this.ans.length; i++)this.ans[i]._id==this._id?this.ans[i].answers=this.activeAns[0].answers:""
       localStorage.setItem("ans",JSON.stringify(this.ans))
     }   
+    localStorage.setItem("checked",JSON.stringify( this.activeAns[0].answers))
+
+    //console.log( this.activeAns[0].answers);
     localStorage.getItem("ans")?this.ans=JSON.parse(localStorage.getItem("ans")!):""
     this.counter--;
     localStorage.setItem("counter",JSON.stringify(this.counter))

@@ -1,0 +1,25 @@
+
+a{
+    color: white !important;
+}
+.model{
+   min-width: 600px !important;
+    display: none;
+    position:fixed;
+    padding: 20px;
+    top: 10%;
+    bottom:auto;
+    left: 30%;
+    right: auto;
+    border: 1px solid rgb(2, 2, 2);
+    right:auto;
+    background-color:white;
+    color:#000;
+    border-radius:10px;
+    text-align:center;
+}
+.text-right{
+    position:absolute;
+    left:90%;
+    right:auto
+}

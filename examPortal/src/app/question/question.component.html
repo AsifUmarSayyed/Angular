@@ -13,8 +13,8 @@
                         <div class="radio"  *ngFor="let item of options[counter]?.options; index as i;">
                            
                                  <label>
-                                     <input *ngIf="options[counter].type"   type="checkbox"  [checked]="i==ans[counter][i]" class="checkBox" name="checkbox" value="i"> 
-                                       <input *ngIf="!options[counter].type" type="radio" [checked]="i==ans[counter]"  class="option" name="option" value="i"> 
+                                     <input *ngIf="options[counter].type"   type="checkbox"  [checked]="i==this.activeAns[0].answers[counter][i]" class="checkBox" name="checkbox" value="i"> 
+                                       <input *ngIf="!options[counter].type" type="radio" [checked]="i==this.activeAns[0].answers[counter]"  class="option" name="option" value="i"> 
                                        {{item}}
                                     </label> 
                         
