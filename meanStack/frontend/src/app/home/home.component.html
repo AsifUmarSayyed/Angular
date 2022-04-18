@@ -1,13 +1,13 @@
 <div id="body">
 <nav class="navbar navbar-expand-lg navbar-light bg-dark">
     <div class="container-fluid">
-      <a class="navbar-brand  " href="#">Navbar</a>
+      <a class="navbar-brand  " style="font-size: 25px;" href="#">Batch 6 foodverse</a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-          <li class="nav-item">
+          <!-- <li class="nav-item">
             <a class="nav-link  active " aria-current="page" href="#">Home</a>
           </li>
           <li class="nav-item">
@@ -15,12 +15,15 @@
           </li>
           
           <li class="nav-item">
-            <a class="nav-link disabled">Disabled</a>
-          </li>
+            <a class="nav-link ">Disabled</a>
+          </li> -->
         </ul>
         <form class="d-flex">
-         
-          <a class="btn btn-outline-success" (click)="model()" >Add Product</a>
+          <!-- <i class="fas fa-user-alt m-2"></i> -->
+          
+            <a class="nav-link "><img class="user" src={{this.currentUser?.image}} height="50" alt="">{{this.currentUser?.name}} | <span (click)="logout()">Logout</span></a>
+        
+        
         </form>
       </div>
     </div>
@@ -28,15 +31,20 @@
 
   
   <div class="container">
+    
+    <a class="btn btn-primary" style="margin: 10px; margin-left: 85%; font-size: 15px;" (click)="addmodel()" >+ Add Product</a>
+ 
     <div class="row">
-      <div class="col-lg-3" *ngFor="let item of this.list.Products">
+     
+      <div class="col-lg-3" *ngFor="let item of this.list.products">
         <div class="card" style="width: 18rem;" >
-            <img src="{{item.image}}" class="card-img-top" alt="...">
+            <img src="{{item.image}}" class="card-img-top" height="250px" alt="...">
             <div class="card-body">
               <h5 class="card-title">{{item.title}}</h5>
               <p class="card-text">{{item.price}}</p>
-              <p class="card-text">{{item.description}}</p>
-              <a href="#" class="btn btn-primary">Go somewhere</a>
+              <p class="card-text">{{item.description.substring(0,20)}}...</p>
+              <a style="margin-right: 10px;" (click)="delete(item)" class="btn btn-danger">Delete</a>
+              <a  (click)="Updatemodel(item)" class="btn btn-success">Update</a>
             </div>
           </div>
       </div>
@@ -51,41 +59,62 @@
  <div id="model" class="model">
 
   <span class="text-right" (click)="dmodel()">X</span>
-  <h3>Add Product</h3>
+  <h3>{{text}} Product</h3>
 
-  <form class="was-validated ">
+  <form class="was-validated " 
+  [formGroup]="productForm" (ngSubmit)="onSubmit()">
   
-    <div class="mb-3 ">
-      <label for="validationTextarea">Enter Name</label>
-      <input type="text p-5" class="form-control is-invalid " id="validationTextarea" placeholder="Required example textarea" required>
+    <div class="m-3 ">
+      <!-- <label for="validationTextarea">Enter Name</label> -->
+      <input formControlName="title" type="text p-5" class="form-control is-invalid " id="validationTextarea" placeholder=" Name " required>
       <!-- <div class="invalid-feedback">
         Please enter a message in the textarea.
       </div> -->
     </div>
-    <div class="mb-3">
-      <label for="validationTextarea">Enter Price</label>
-      <input type="number " class="form-control is-invalid" id="validationTextarea" placeholder="Required example textarea" required>
+    <div class="m-3 ">
+      <!-- <label for="validationTextarea">Enter Price</label> -->
+      <input  formControlName="price" type="number" class="form-control is-invalid" id="validationTextarea" placeholder="Price " required>
       <!-- <div class="invalid-feedback">
         Please enter a message in the textarea.
       </div> -->
     </div>
 
 
-    <div class="mb-3">
-      <label for="validationTextarea">Textarea</label>
-      <textarea class="form-control is-invalid p-5" id="validationTextarea" placeholder="Required example textarea" required></textarea>
+    <div class="m-3 ">
+      <!-- <label for="validationTextarea">Textarea</label> -->
+      <textarea formControlName="description" class="form-control is-invalid " id="validationTextarea" placeholder="Description" required></textarea>
+      <!-- <div class="invalid-feedback">
+        Please enter a message in the textarea.
+      </div> -->
+    </div>
+    <div class="m-3 ">
+      <!-- <label for="validationTextarea">Enter Category</label> -->
+      <!-- <input  type="text p-5" class="form-control is-invalid " id="validationTextarea" placeholder="Required example textarea" required> -->
+      <select  formControlName="category" class="form-control is-invalid " required>
+        <option value="">Choose Category</option>
+        <option value="volvo">Volvo</option>
+        <option value="saab">Saab</option>
+        <option value="opel">Opel</option>
+        <option value="audi">Audi</option>
+      </select>
       <!-- <div class="invalid-feedback">
         Please enter a message in the textarea.
       </div> -->
     </div>
   
-   
-    <div class="custom-file">
-      <input type="file" class="custom-file-input" id="validatedCustomFile" required>
+    <div class="m-3 ">
+      <!-- <label for="validationTextarea">Enter Image Url</label> -->
+      <input  formControlName="image" type="text p-5" class="form-control is-invalid " id="validationTextarea" placeholder="Image Url" required>
+      <!-- <div class="invalid-feedback">
+        Please enter a message in the textarea.
+      </div> -->
+    </div>
+    <!-- <div class="custom-file m-4" >
+      <input  formControlName="image" type="file" class="custom-file-input" id="validatedCustomFile" required> -->
       <!-- <label class="custom-file-label" for="validatedCustomFile">Choose file...</label>
       <div class="invalid-feedback">Example invalid custom file feedback</div> -->
-    </div>
-    <button class="btn btn-primary" type="submit">Submit form</button>
+    <!-- </div> -->
+    <button class="btn btn-primary" [disabled]="!productForm.valid" type="submit">{{text}} Now</button>
   </form>
 
 

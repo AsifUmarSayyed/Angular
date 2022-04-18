@@ -2,6 +2,9 @@
 a{
     color: white !important;
 }
+span:hover{
+    cursor: pointer;
+}
 .model{
    min-width: 600px !important;
     display: none;
@@ -22,4 +25,8 @@ a{
     position:absolute;
     left:90%;
     right:auto
+}
+.user{
+    margin-right: 10px;
+    border-radius: 30px;
 }
