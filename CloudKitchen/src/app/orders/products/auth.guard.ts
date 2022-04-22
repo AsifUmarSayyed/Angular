@@ -13,7 +13,7 @@ import { ProductService } from './product.service';
   providedIn: 'root',
 })
 export class AuthGuard implements CanActivate {
-  constructor(private service: ProductService, private router: Router) {}
+  constructor(private service: ProductService, private router: Router) { }
   canActivate(): boolean {
     if (this.service.loggedIn()) {
       return true;

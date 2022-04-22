@@ -10,7 +10,7 @@ export class ProductService {
   public cartItemList: any = [];
   public productItemList = new BehaviorSubject<any>([]);
 
-  constructor(private httpClient: HttpClient) {}
+  constructor(private httpClient: HttpClient) { }
 
   getCartProduct() {
     return this.productItemList.asObservable;

@@ -21,6 +21,7 @@ export class LoginComponent implements OnInit {
   constructor(private router:Router,private http:HttpClient,private userService:LoginService) { }
 
   ngOnInit(): void {
+    console.log(localStorage.getItem("token"));
   }
   sign(){
     this.router.navigate(["signup"])
@@ -38,6 +39,8 @@ localStorage.setItem("token",JSON.stringify(data.token))
   this.router.navigate(["home/",data.user._id])
 },err=>{
     alert(err.error);
+
+  
     
   })
 
@@ -46,6 +49,8 @@ localStorage.setItem("token",JSON.stringify(data.token))
     else{
       alert("Something went wrong")
     }
+   
+    
   }
 
 }

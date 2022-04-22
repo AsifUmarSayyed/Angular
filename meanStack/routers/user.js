@@ -10,8 +10,7 @@ router.post('/',async (req, res) => {
     const {error}=userValidation(req.body);
     if(error) return  res.status(400).send(error.details[0].message)  
 
-    const isUser= await User.findOne({email:req.body.email})
-    if(isUser) return  res.status(400).send(isUser) 
+ 
 
     const salt= await bcrypt.genSalt(10)
 const hashedPassword= await bcrypt.hash(req.body.password,salt)
@@ -85,6 +84,15 @@ router.get('/',verify,async (req, res) => {
     
   
         })
+router.get('/:id',verify,async (req, res) => {
+            await User.findOne({_id : req.params.id})
+             
+             .then(users=> {return res.json({success:true,
+                 message:"Users retrived successfully",
+                 users})}).catch(error=>res.status(400).json(error))
+             
+           
+                 })
     
 router.put('/:id',verify, async (req, res,next) => { 
     console.log(req.params.id);

@@ -12,6 +12,9 @@ export class LoginService {
 getUser(){
   return this.http.get<any>(this.url,this.Header)
  }
+ getOneUser(id:any){
+  return this.http.get<any>(this.url+"/"+id,this.Header)
+ }
  postUser(body:any){
    return this.http.post<any>(this.url,body)
  }

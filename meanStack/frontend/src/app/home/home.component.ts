@@ -14,9 +14,11 @@ export class HomeComponent implements OnInit {
   list:any=[]
   flag=true
   text="Add"
+  noItem:any=5
   
   userId:any
-  allUsers:any
+  collection = [];
+ 
   currentUser:any
   productForm = new FormGroup({
    
@@ -27,23 +29,30 @@ export class HomeComponent implements OnInit {
     image: new FormControl(''),
    
   });
+  p:any=1
 
-  constructor(private http:HttpClient,private router:Router, private Activated:ActivatedRoute,private productService:ProductServiceService, private userService:LoginService) { }
+  constructor(private http:HttpClient,private router:Router, private Activated:ActivatedRoute,private productService:ProductServiceService, private userService:LoginService) { 
+
+    for (let i = 1; i <= this.list.length; i++) {
+      this.list.products.push(`item ${i}`);
+    }
+  }
 
   ngOnInit(): void {
+    
 this.Activated.params.subscribe(data=>{
   console.log(data);
   this.userId=data
 
 })
- this.userService.getUser().subscribe(data=>{
-   this.allUsers=data
+ this.userService.getOneUser(this.userId.id).subscribe(data=>{
+   this.currentUser=data.users
  
-   for (let i = 0; i < this.allUsers?.users.length; i++) {
+  //  for (let i = 0; i < this.allUsers?.users.length; i++) {
      
-    (this.allUsers.users[i]._id==this.userId.id)?this.currentUser=this.allUsers.users[i]:""
+  //   (this.allUsers.users[i]._id==this.userId.id)?this.currentUser=this.allUsers.users[i]:""
 
-   }
+  //  }
    console.log(this.currentUser);
    
  })
@@ -69,27 +78,16 @@ this.Activated.params.subscribe(data=>{
     this.get()
   }
   onSubmit(){
-    if(this.flag){
-  
-    console.warn(this.productForm.value);
-
-    (document.getElementById("model")as HTMLInputElement).style.cssText=`display: none;`;
-    (document.getElementById("body")as HTMLInputElement).style.cssText=`filter: blur(0px)`;
+    if(this.flag){ 
+    console.warn(this.productForm.value);  
  
     this.post(this.productForm.value);
-    this.productForm = new FormGroup({
-      title: new FormControl(''),
-      price: new FormControl(''),
-      description: new FormControl(''),
-      category: new FormControl(''),
-      image: new FormControl(''),
-     
-    });
+    
   }else{
     console.log(this.productForm.value._id);
    this.put(this.productForm.value)
-   this.dmodel  ()
-    
+ 
+  
 
   }
     
@@ -102,10 +100,14 @@ this.Activated.params.subscribe(data=>{
     this.productService.getProduct().subscribe(data=>{
       this.list=data
       console.log(data)}
+    
       ,err=>{
         alert(err.error.message)
-       
+       localStorage.clear()
         this.router.navigate([""])
+       
+      
+        
       }
       )
 
@@ -114,7 +116,21 @@ this.Activated.params.subscribe(data=>{
   post(data:any){
       this.productService.postProduct(data).subscribe(data=>{
         this.list=data
-        console.log(data)})
+        console.log(data)
+        this.dmodel()
+
+        this.productForm = new FormGroup({
+          title: new FormControl(''),
+          price: new FormControl(''),
+          description: new FormControl(''),
+          category: new FormControl(''),
+          image: new FormControl(''),
+         
+        });
+      },err=>{
+         alert(err.error.message);
+          
+        })
   
      
       }
@@ -136,8 +152,10 @@ this.Activated.params.subscribe(data=>{
 Updatemodel(item:any){
   
   this.productForm.patchValue(item)
-  this.flag=false
- this.model()
+  this.flag=false;
+  this.model()
+//basicModal.show()
+// (document.getElementById("basicModal")as HTMLInputElement)!.show();
  localStorage.setItem("id",JSON.stringify(item._id))
 
  
@@ -164,10 +182,11 @@ put(item:any){
     
   (data:any)=>{
 console.log(data);
+this.dmodel()
 
   },
   (err)=>{
-    console.log(err);
+    alert(err.error.message);
 
   })
 
@@ -181,5 +200,9 @@ if(confirm('Are you sure to Logout')){
 
 }
 }
-
+itemPerPage(){
+  this.noItem = (document.getElementById("select")as HTMLInputElement).value
+  console.log((document.getElementById("select")as HTMLInputElement).value);
+ 
+}
 }

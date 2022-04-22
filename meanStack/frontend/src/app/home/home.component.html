@@ -1,3 +1,4 @@
+
 <div id="body">
 <nav class="navbar navbar-expand-lg navbar-light bg-dark">
     <div class="container-fluid">
@@ -23,20 +24,19 @@
           
             <a class="nav-link "><img class="user" src={{this.currentUser?.image}} height="50" alt="">{{this.currentUser?.name}} | <span (click)="logout()">Logout</span></a>
         
-        
-        </form>
+           </form>
       </div>
     </div>
   </nav>
 
   
   <div class="container">
-    
-    <a class="btn btn-primary" style="margin: 10px; margin-left: 85%; font-size: 15px;" (click)="addmodel()" >+ Add Product</a>
+    <mdb-icon  style="margin: 10px; margin-left: 93%; color: rgb(34, 150, 228); font-size:55px;" (click)="addmodel()" fas icon="plus-circle"></mdb-icon>
+    <!-- <a class="btn btn-primary" style="margin: 10px; margin-left: 85%; font-size: 15px;" (click)="addmodel()" >+ Add Product</a> -->
  
     <div class="row">
      
-      <div class="col-lg-3" *ngFor="let item of this.list.products">
+      <!-- <div class="col-lg-3" *ngFor="let item of this.list.products | paginate: { itemsPerPage: noItem, currentPage: p} ">
         <div class="card" style="width: 18rem;" >
             <img src="{{item.image}}" class="card-img-top" height="250px" alt="...">
             <div class="card-body">
@@ -47,13 +47,71 @@
               <a  (click)="Updatemodel(item)" class="btn btn-success">Update</a>
             </div>
           </div>
-      </div>
+      </div> -->
+
+       <!-- table -->
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Name</th>
+      <th scope="col">Image</th>
+      <th scope="col">Date</th>
+      <th scope="col">Price</th>
+      <th scope="col">Category</th>
+      <th scope="col">Description</th>
+      <th scope="col">Delete</th>
+      <th scope="col">Update</th>
+    </tr>
+  </thead>
+  <tbody>
+    <ng-container   *ngFor="let item of this.list.products | paginate: { itemsPerPage: noItem, currentPage: p} index as index">
+    <tr >
+      <td>{{index+1}}</td>
+      <td> <img src="{{item.image}}"  height="100px" width="100px" alt="..."></td>      
+      <td>{{item.title}}</td> 
+      <td>{{item.date}}</td>      
+      <td>{{item.price}}</td>
+      <td>{{item.category}}</td>
+      <td>{{item.description}}</td>
+      <td><mdb-icon  (click)="delete(item)" style="color: red; font-size:25px;" fas icon="trash-alt"></mdb-icon>
+       
+      <td><mdb-icon  (click)="Updatemodel(item)" style="color: green; font-size:25px;" fas icon="edit"></mdb-icon> </td>
+     
+    </tr>
+  </ng-container>
+  </tbody>
+</table> 
       
     </div>
   </div>
 
+ 
 
+<div class="row m-3" >
+  <div class="col-lg-1">
+   
+    <select (click)="itemPerPage()" id="select" class="browser-default custom-select"> 
+     
+      <option selected value="5">5</option>
+      <option value="10">10</option>
+      <option value="20">20</option>
+    </select>
+   
+  </div>
+  <div class="col-lg-8">
+   
+  <p>itemsPerPage</p>
+   
+  </div>
+  <div class="col-lg-3">
+	<pagination-controls  (pageChange)="p = $event"></pagination-controls>
 </div>
+</div>
+</div>
+
+
+
 
 
  <div id="model" class="model">
@@ -119,3 +177,7 @@
 
 
  </div>
+
+
+
+ 

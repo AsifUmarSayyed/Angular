@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { LoginService } from './login.service';
 
 @Injectable({
   providedIn: 'root'
@@ -7,8 +8,8 @@ import { Injectable } from '@angular/core';
 export class ProductServiceService {
    url='http://192.168.0.120:3001/api/product'
    Header={headers:{"auth-token":  JSON.parse(localStorage.getItem("token")!)}}
-  constructor(private http:HttpClient) {
-  
+  constructor(private http:HttpClient,private loginService:LoginService) {
+   
    }
 
 

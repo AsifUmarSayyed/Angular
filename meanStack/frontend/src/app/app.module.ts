@@ -26,16 +26,32 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ReactiveFormsModule } from '@angular/forms';
 import { LoginComponent } from './login/login.component';
 import { SignupComponent } from './signup/signup.component';
+import { MatSliderModule } from '@angular/material/slider';
+import { MDBBootstrapModule } from 'angular-bootstrap-md';
+import {MatTableModule} from '@angular/material/table';
+import {  MatPaginatorModule } from '@angular/material/paginator';
+import { MatSortModule} from '@angular/material/sort';
+import { NgxPaginationModule } from 'ngx-pagination';
+import { IconsModule } from 'angular-bootstrap-md'
+
+
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     LoginComponent,
-    SignupComponent
+    SignupComponent,
+    
   ],
   imports: [
+    MatSortModule,
+    
+    MatTableModule,
+    MatPaginatorModule,
+    NgxPaginationModule,
     BrowserModule,
+    MatSliderModule,
     ReactiveFormsModule,
     AppRoutingModule,
     MdbCheckboxModule,
@@ -44,6 +60,7 @@ import { SignupComponent } from './signup/signup.component';
     MdbCarouselModule,
     MdbCheckboxModule,
     MdbCollapseModule,
+    IconsModule,
     MdbDropdownModule,
     MdbFormsModule,
     MdbModalModule,
@@ -56,6 +73,7 @@ import { SignupComponent } from './signup/signup.component';
     MdbTooltipModule,
     MdbValidationModule,
     BrowserAnimationsModule,
+    MDBBootstrapModule.forRoot(),
     
   ],
   providers: [],

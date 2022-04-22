@@ -1,10 +1,10 @@
-const Joi= require("@hapi/joi");
+const Joi= require("joi");
 
 const productValidation=(data)=>{
 const schema=Joi.object({ 
-       title:Joi.string().min(0).required(),
+       title:Joi.string().min(6).required(),
     price:Joi.number().min(0).required(),
-    description:Joi.string().min(0).required(),    
+    description:Joi.string().min(6).required(),    
   category: Joi.string().required(),
  image: Joi.string().required(),
     

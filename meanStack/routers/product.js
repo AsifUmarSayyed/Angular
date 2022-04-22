@@ -99,6 +99,6 @@ router.delete('/:id',verify,async (req, res) => {
                     message:"Users deleted successfully", Product:req.Product,
                     Products}))
                 
-                })
+   })
     
 module.exports = router;
