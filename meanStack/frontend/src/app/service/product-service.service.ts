@@ -7,23 +7,23 @@ import { LoginService } from './login.service';
 })
 export class ProductServiceService {
    url='http://192.168.0.120:3001/api/product'
-   Header={headers:{"auth-token":  JSON.parse(localStorage.getItem("token")!)}}
+  //  Header={headers:{"auth-token":  JSON.parse(localStorage.getItem("token")!)}}
   constructor(private http:HttpClient,private loginService:LoginService) {
    
    }
 
 
 getProduct(){
-   return this.http.get<any>(this.url,this.Header)
+   return this.http.get<any>(this.url)
   //return this.http.get<any>(this.url)
  }
  postProduct(body:any){
-   return this.http.post<any>(this.url,body,this.Header)
+   return this.http.post<any>(this.url,body)
  }
  deleteProduct(body:any){
-  return this.http.delete<any>(this.url+"/"+body,this.Header)
+  return this.http.delete<any>(this.url+"/"+body)
 }
 updateProduct(id:any,body:any){
-  return this.http.put<any>(this.url+"/"+id,body,this.Header)
+  return this.http.put<any>(this.url+"/"+id,body)
 }
 }

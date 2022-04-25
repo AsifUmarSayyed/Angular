@@ -5,6 +5,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { json } from 'body-parser';
 import { LoginService } from '../service/login.service';
 import { ProductServiceService } from '../service/product-service.service';
+import { SocketService } from '../services/socket.service';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -31,7 +32,7 @@ export class HomeComponent implements OnInit {
   });
   p:any=1
 
-  constructor(private http:HttpClient,private router:Router, private Activated:ActivatedRoute,private productService:ProductServiceService, private userService:LoginService) { 
+  constructor(private socketService: SocketService ,private http:HttpClient,private router:Router, private Activated:ActivatedRoute,private productService:ProductServiceService, private userService:LoginService) { 
 
     for (let i = 1; i <= this.list.length; i++) {
       this.list.products.push(`item ${i}`);
@@ -102,7 +103,6 @@ this.Activated.params.subscribe(data=>{
       console.log(data)}
     
       ,err=>{
-        alert(err.error.message)
        localStorage.clear()
         this.router.navigate([""])
        
