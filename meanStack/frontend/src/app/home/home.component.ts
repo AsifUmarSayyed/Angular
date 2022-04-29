@@ -15,7 +15,7 @@ export class HomeComponent implements OnInit {
   list:any=[]
   flag=true
   text="Add"
-  noItem:any=5
+  noItem:any=2
   
   userId:any
   collection = [];
@@ -192,17 +192,11 @@ this.dmodel()
 
 
 }
-logout(){
-if(confirm('Are you sure to Logout')){
- 
- localStorage.clear()
-  this.router.navigate([""])
 
-}
-}
 itemPerPage(){
   this.noItem = (document.getElementById("select")as HTMLInputElement).value
   console.log((document.getElementById("select")as HTMLInputElement).value);
  
 }
 }
+

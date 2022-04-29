@@ -27,7 +27,7 @@ export class ListOrderComponent implements OnInit {
 
   ngOnInit(): void {
     this.http
-      .get<any>('http://localhost:3000/signupUsers')
+      .get<any>('http://192.168.0.120:3000/signupUsers')
       .subscribe((data) => {
         this.user = data;
         console.log(data);
@@ -39,7 +39,7 @@ export class ListOrderComponent implements OnInit {
       this.categoryList = data;
     });
 
-    this.http.get<any>('http://localhost:3000/orders').subscribe(
+    this.http.get<any>('http://192.168.0.120:3000/orders').subscribe(
       (data) => {
         console.log(data);
         this.orderlist = data;
@@ -56,7 +56,7 @@ export class ListOrderComponent implements OnInit {
   }
   delete(prd: any) {
     this.http
-      .delete<any>('http://localhost:3000/orders/' + prd.id)
+      .delete<any>('http://192.168.0.120:3000/orders/' + prd.id)
       .subscribe((data) => {
         alert('Deleted Sucessfully!!');
       });

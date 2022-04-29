@@ -35,7 +35,7 @@ export class MyOrdersComponent implements OnInit {
     });
 
     this.http
-      .get<any>('http://localhost:3000/orders?cid=' + this.productId.id)
+      .get<any>('http://192.168.0.120:3000/orders?cid=' + this.productId.id)
       .subscribe(
         (data) => {
           console.log(data);

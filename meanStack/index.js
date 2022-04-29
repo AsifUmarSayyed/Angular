@@ -24,7 +24,7 @@ mongoose.connect(process.env.DB_CONNECT,{  useNewUrlParser: true}, () => console
 )
 
 
-app.listen(3001, () => console.log('server running!!'));
+app.listen(3000, () => console.log('server running!!'));
 io.on('connection', (socket) => {
     console.log('a user connected');
   });

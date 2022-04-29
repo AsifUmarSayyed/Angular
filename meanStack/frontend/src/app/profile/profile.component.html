@@ -1,0 +1,135 @@
+<app-nav>hi </app-nav>
+<!-- <h1 class="featurette-heading text-center m-5">First featurette heading. <span class="text-muted">It’ll blow your
+    mind.</span></h1>
+
+<div class="row m-5">
+  <div class="col-md-6" style="text-align: center; justify-content: center;">
+    <div class="row "  style="text-align: center; justify-content: center;">
+    <img class="user" src={{imageUrl}} alt="">
+  </div>
+<div class="row"  style="text-align: center; justify-content: center; align-items: center;">
+  
+  </div>
+    
+  </div>
+  <div class="col-md-6">
+    <h2 class="featurette-heading">First featurette heading. <span class="text-muted">It’ll blow your mind.</span></h2>
+    <input type='file' id="imageUpload" accept=".png, .jpg, .jpeg" #fileInput (change)="uploadFile($event)" />
+  </div>
+
+</div> -->
+
+<section class="h-100 gradient-custom-2">
+  <div class="container py-2 h-30" >
+    <div class="row d-flex justify-content-center align-items-center h-100" >
+      <div class="col col-lg-9 col-xl-7" style="border-radius: 35px;">
+        <div class="card"  style="border-radius: 35px;">
+          <div class="rounded-top text-white d-flex flex-row" style="border-radius: 35px; background-image: url('https://t4.ftcdn.net/jpg/04/27/27/39/240_F_427273947_tUcqdn3DUfOsYHBeKxNQl5r01WPmBu3u.jpg')">
+            <div class="ms-4 mt-5 d-flex flex-column" style="width: 150px;">
+              <img src={{imageUrl}}
+                alt="Generic placeholder image" class="img-fluid img-thumbnail mt-4 mb-2"
+                style="width: 150px; z-index: 1">
+              <button (click)="show==true?show=false:show=true"  type="button" class="btn btn-outline-light m-2" data-mdb-ripple-color="dark"
+                style="z-index: 1;">
+              <ng-container *ngIf="show">
+                Cancel
+              </ng-container> 
+              <ng-container *ngIf="!show">
+                Edit Profile
+              </ng-container> 
+              </button>
+            </div>
+            <div class="ms-3" style="margin-top: 130px;">
+              <h2>{{currentUser?.name}}</h2>
+              <p>India</p>
+            </div>
+          </div>
+          <!-- <div class="p-4 text-black" style="background-color: #f8f9fa;">
+            <div class="d-flex justify-content-end text-center py-1">
+              <div>
+                <p class="mb-1 h5">253</p>
+                <p class="small text-muted mb-0">Photos</p>
+              </div>
+              <div class="px-3">
+                <p class="mb-1 h5">1026</p>
+                <p class="small text-muted mb-0">Followers</p>
+              </div>
+              <div>
+                <p class="mb-1 h5">478</p>
+                <p class="small text-muted mb-0">Following</p>
+              </div>
+            </div>
+          </div> -->
+          <div class="row card-body  text-black">
+            <div class="col-lg-6 ">
+              <p class="lead fw-normal mb-1">About </p>
+             
+              <div class="p-4" style="background-color: #f8f9fa;">
+                <p class="font-italic mb-1">Name - {{currentUser?.name}}</p>
+                <p class="font-italic mb-1">Email - {{currentUser?.email}}</p>
+                <p class="font-italic mb-1">Address - {{currentUser?.address}}</p>
+                <p class="font-italic mb-0">Contact No - {{currentUser?.contact}}</p>
+                <p class="font-italic mb-0">Date of Joining - {{currentUser?.date}}</p>
+
+              </div>
+            </div>
+            <!-- <input type='file' id="imageUpload" accept=".png, .jpg, .jpeg" #fileInput (change)="uploadFile($event)" /> -->
+            <div *ngIf="show" style="border: 2px solid black; border-radius: 25px; background-color: rgb(245, 245, 245)" class="col-lg-6 ">
+             
+             
+              <div class="p-4" style="background-color: rgb(245, 245, 245);  border-radius: 25px; ">
+                <form class="was-validated">
+                  <p class="lead fw-normal mb-1">About</p>
+                  <div class="mb-3">
+                    <!-- <label for="validationTextarea" class="form-label">Textarea</label> -->
+                    <input type="text" class="form-control is-invalid" id="validationTextarea" placeholder="Required example textarea" required>
+                    <!-- <div class="invalid-feedback">
+                      Please enter a message in the textarea.
+                    </div> -->
+                  </div>
+                  <div class="mb-3">
+                    <!-- <label for="validationTextarea" class="form-label">Textarea</label> -->
+                    <input type="text" class="form-control is-invalid" id="validationTextarea" placeholder="Required example textarea" required>
+                    <!-- <div class="invalid-feedback">
+                      Please enter a message in the textarea.
+                    </div> -->
+                  </div>
+                  <div class="mb-3">
+                    <!-- <label for="validationTextarea" class="form-label">Textarea</label> -->
+                    <textarea class="form-control is-invalid" id="validationTextarea" placeholder="Required example textarea" required></textarea>
+                    <!-- <div class="invalid-feedback">
+                      Please enter a message in the textarea.
+                    </div> -->
+                  </div>
+                  <div class="mb-3">
+                    <!-- <label for="validationTextarea" class="form-label">Textarea</label> -->
+                    <input type="number" class="form-control is-invalid" id="validationTextarea" placeholder="Required example textarea" required>
+                    <!-- <div class="invalid-feedback">
+                      Please enter a message in the textarea.
+                    </div> -->
+                  </div>
+               
+                
+                 
+                
+                  
+                
+                  <div class="mb-3">
+                    <input type='file' id="imageUpload" accept=".png, .jpg, .jpeg" #fileInput (change)="uploadFile($event)" class="form-control" aria-label="file example" required>
+                    <!-- <div class="invalid-feedback">Example invalid form file feedback</div> -->
+                  </div>
+                
+                  <div class="mb-3">
+                    <button class="btn btn-primary" type="submit" >Submit form</button>
+                  </div>
+                </form>
+              </div>
+            </div>
+           
+          
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

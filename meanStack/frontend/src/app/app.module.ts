@@ -27,7 +27,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { LoginComponent } from './login/login.component';
 import { SignupComponent } from './signup/signup.component';
 import { MatSliderModule } from '@angular/material/slider';
-import { MDBBootstrapModule } from 'angular-bootstrap-md';
+import { DropdownModule, MDBBootstrapModule } from 'angular-bootstrap-md';
 import {MatTableModule} from '@angular/material/table';
 import {  MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule} from '@angular/material/sort';
@@ -37,6 +37,9 @@ import { IntercepterService } from './service/intercepter.service';
 
 import { environment } from 'src/environments/environment';
 import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
+import { ProfileComponent } from './profile/profile.component';
+import { NavComponent } from './nav/nav.component';
+
 
 const config: SocketIoConfig = {
 	url: environment.socketUrl, // socket server url;
@@ -51,10 +54,13 @@ const config: SocketIoConfig = {
     HomeComponent,
     LoginComponent,
     SignupComponent,
+    ProfileComponent,
+    NavComponent,
     
   ],
   imports: [
     MatSortModule,
+
     
     MatTableModule,
     MatPaginatorModule,
@@ -82,6 +88,8 @@ const config: SocketIoConfig = {
     MdbTooltipModule,
     MdbValidationModule,
     BrowserAnimationsModule,
+    MdbDropdownModule,
+    DropdownModule,
     MDBBootstrapModule.forRoot(),
     SocketIoModule.forRoot(config),
     

@@ -24,7 +24,7 @@ export class LoginComponent implements OnInit {
   }
 
   login() {
-    this.http.get<any>('http://localhost:3000/signupUsers').subscribe(
+    this.http.get<any>('http://192.168.0.120:3000/signupUsers').subscribe(
       (data) => {
         const user = data.find((a: any) => {
           return (

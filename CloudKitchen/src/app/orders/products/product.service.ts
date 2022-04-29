@@ -58,46 +58,46 @@ export class ProductService {
   }
 
   createProduct(productBody: any) {
-    const baseUrl = 'http://localhost:3000/product';
+    const baseUrl = 'http://192.168.0.120:3000/product';
     return this.httpClient.post<Product>(baseUrl, productBody);
   }
   viewProducts(productId: Observable<Product>) {
-    const baseUrl = 'http://localhost:3000/product?id=' + productId;
+    const baseUrl = 'http://192.168.0.120:3000/product?id=' + productId;
     return this.httpClient.get<Product>(baseUrl);
   }
   viewProduct() {
-    const baseUrl = 'http://localhost:3000/product/';
+    const baseUrl = 'http://192.168.0.120:3000/product/';
     return this.httpClient.get<Product>(baseUrl);
   }
   viewSingleProduct(productId: Observable<Product>) {
-    const baseUrl = 'http://localhost:3000/product?id=' + productId;
+    const baseUrl = 'http://192.168.0.120:3000/product?id=' + productId;
     return this.httpClient.get<Product>(baseUrl);
   }
   updateProduct(
     productId: Observable<Product>,
     productBody: Observable<Product>
   ) {
-    const baseUrl = 'http://localhost:3000/product/' + productId;
+    const baseUrl = 'http://192.168.0.120:3000/product/' + productId;
     return this.httpClient.put<Product>(baseUrl, productBody);
   }
   deleteProduct(productId: Observable<Product>) {
-    const baseUrl = 'http://localhost:3000/product/' + productId;
+    const baseUrl = 'http://192.168.0.120:3000/product/' + productId;
     return this.httpClient.delete<Product>(baseUrl);
   }
   searchCategoryProduct(categoryId: Observable<Product>) {
-    const baseUrl = 'http://localhost:3000/product?category_id=' + categoryId;
+    const baseUrl = 'http://192.168.0.120:3000/product?category_id=' + categoryId;
     return this.httpClient.get<Product>(baseUrl);
   }
   searchDateProduct(dateParam: Observable<Product>) {
-    const baseUrl = 'http://localhost:3000/product/date=' + dateParam;
+    const baseUrl = 'http://192.168.0.120:3000/product/date=' + dateParam;
     return this.httpClient.get<Product>(baseUrl);
   }
   getCategory() {
-    const categoryUrl = 'http://localhost:3000/categories';
+    const categoryUrl = 'http://192.168.0.120:3000/categories';
     return this.httpClient.get<Category>(categoryUrl);
   }
   viewCategory(categoryId: Observable<Product>) {
-    const categoryUrl = 'http://localhost:3000/categories?id=' + categoryId;
+    const categoryUrl = 'http://192.168.0.120:3000/categories?id=' + categoryId;
     return this.httpClient.get<Category>(categoryUrl);
   }
   loggedIn() {

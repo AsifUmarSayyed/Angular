@@ -35,7 +35,7 @@ export class SignupComponent implements OnInit {
       return
     }
     this.http
-      .post<any>('http://localhost:3000/signupUsers', this.signupForm.value)
+      .post<any>('http://192.168.0.120:3000/signupUsers', this.signupForm.value)
       .subscribe(
         (data) => {
           alert('Signup Successfully');

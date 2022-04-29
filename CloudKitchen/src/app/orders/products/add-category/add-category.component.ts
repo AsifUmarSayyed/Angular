@@ -28,7 +28,7 @@ export class AddCategoryComponent implements OnInit {
       categoryName: form.value.product_category,
     };
     this.http
-      .post<any>('http://localhost:3000/categories/', this.updatenewProduct)
+      .post<any>('http://192.168.0.120:3000/categories/', this.updatenewProduct)
       .subscribe(
         (data) => {
           alert('Category Added Successfully!!');

@@ -6,7 +6,7 @@ import { LoginService } from './login.service';
   providedIn: 'root'
 })
 export class ProductServiceService {
-   url='http://192.168.0.120:3001/api/product'
+   url='http://192.168.0.120:3000/api/product'
   //  Header={headers:{"auth-token":  JSON.parse(localStorage.getItem("token")!)}}
   constructor(private http:HttpClient,private loginService:LoginService) {
    

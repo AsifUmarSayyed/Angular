@@ -1,0 +1,40 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-dark">
+    <div class="container-fluid">
+      <a class="navbar-brand  "  href="#">Batch 6 foodverse</a>
+     
+     
+      
+       
+        <form class="d-flex">
+       
+          
+            <a class="nav-link " (click)="basicModal.show()" data-mdb-toggle="modal" data-mdb-target="#exampleModal"><img class="user" src={{this.currentUser?.image}}  alt="">{{this.currentUser?.name}}<i class="fas fa-caret-down"></i></a>
+            <a class="nav-link1 " (click)="basicModal.show()" data-mdb-toggle="modal" data-mdb-target="#exampleModal"><img class="user" src={{this.currentUser?.image}}  alt=""><i class="fas fa-caret-down"></i></a>
+           </form>
+
+         
+     
+      
+     
+    </div>
+
+
+<!-- Modal -->
+<div  mdbModal #basicModal="mdbModal"class="modal right fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" data-mdb-backdrop="false" data-mdb-keyboard="true">
+  <div class="modal-dialog modal-side modal-top-right modal-sm">
+    <div class="modal-content" style="width: 180px; background-color: #212121; ">
+      
+     
+     
+      
+      <a class="drDown" (click)="logout()"> <i class="fa fa-sign-out" aria-hidden="true"></i>Logout</a>
+      <a class="drDown" (click)="profile()"><i class="fa fa-user" aria-hidden="true"></i>My profile</a>
+     <a class="drDown"><i class="fa fa-unlock-alt" aria-hidden="true"></i>Change password</a>
+     <a class="drDown"><i class="fa fa-cog" aria-hidden="true"></i> Settings</a>
+
+ 
+      
+    </div>
+  </div>
+</div>
+  </nav>

@@ -36,7 +36,7 @@ export class ViewCategoryTableComponent implements OnInit {
   }
   delete(catg: any) {
     this.http
-      .delete<any>('http://localhost:3000/categories/' + catg.id)
+      .delete<any>('http://192.168.0.120:3000/categories/' + catg.id)
       .subscribe((data) => {
         alert('Successfully Deleted Category!!');
       });

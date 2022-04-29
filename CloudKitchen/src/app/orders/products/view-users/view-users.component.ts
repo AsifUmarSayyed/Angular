@@ -23,7 +23,7 @@ export class ViewUsersComponent implements OnInit {
 
   ngOnInit(): void {
     this.http
-      .get<any>('http://localhost:3000/signupUsers')
+      .get<any>('http://192.168.0.120:3000/signupUsers')
       .subscribe((data) => {
         this.userList = data;
         this.allProductList = data;
@@ -41,7 +41,7 @@ export class ViewUsersComponent implements OnInit {
   }
   delete(catg: any) {
     this.http
-      .delete<any>('http://localhost:3000/signupUsers/' + catg.id)
+      .delete<any>('http://192.168.0.120:3000/signupUsers/' + catg.id)
       .subscribe((data) => {
         alert('User Deleted Successfully!!');
         window.location.reload();

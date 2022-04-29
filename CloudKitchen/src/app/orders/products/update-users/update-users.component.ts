@@ -28,7 +28,7 @@ export class UpdateUsersComponent implements OnInit {
       console.log(this.productId);
     });
     this.http
-      .get<any>('http://localhost:3000/signupUsers?id=' + this.productId)
+      .get<any>('http://192.168.0.120:3000/signupUsers?id=' + this.productId)
       .subscribe((data) => {
         this.UserList = data;
         console.log(this.UserList);
@@ -47,7 +47,7 @@ export class UpdateUsersComponent implements OnInit {
     console.log(this.updatenewProduct);
     this.http
       .put<any>(
-        'http://localhost:3000/signupUsers/' + this.productId,
+        'http://192.168.0.120:3000/signupUsers/' + this.productId,
         this.updatenewProduct
       )
       .subscribe((data) => {

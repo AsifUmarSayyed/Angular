@@ -23,7 +23,7 @@ export class AddToCartComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.http.get<any>('http://localhost:3000/orders').subscribe((data) => {
+    this.http.get<any>('http://192.168.0.120:3000/orders').subscribe((data) => {
       if (data) {
         this.orderItemList = data;
         localStorage.setItem(
@@ -95,7 +95,7 @@ export class AddToCartComponent implements OnInit {
     console.log(this.orderItemList);
 
     this.http
-      .post<any>('http://localhost:3000/orders', this.order.value)
+      .post<any>('http://192.168.0.120:3000/orders', this.order.value)
       .subscribe(
         (data) => {
           console.log(data);

@@ -27,7 +27,7 @@ export class UpdateCategoryComponent implements OnInit {
       console.log(this.catgeoryId);
     });
     this.http
-      .get<any>('http://localhost:3000/categories?id=' + this.catgeoryId)
+      .get<any>('http://192.168.0.120:3000/categories?id=' + this.catgeoryId)
       .subscribe(
         (data) => {
           console.log(data);
@@ -45,7 +45,7 @@ export class UpdateCategoryComponent implements OnInit {
     };
     this.http
       .put<any>(
-        'http://localhost:3000/categories/' + this.catgeoryId,
+        'http://192.168.0.120:3000/categories/' + this.catgeoryId,
         this.updatenewProduct
       )
       .subscribe(

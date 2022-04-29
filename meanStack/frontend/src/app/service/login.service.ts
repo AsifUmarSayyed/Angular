@@ -5,7 +5,7 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class LoginService {
-  url='http://192.168.0.120:3001/api/user'
+  url='http://192.168.0.120:3000/api/user'
   // Header={headers:{"auth-token":  JSON.parse(localStorage.getItem("token")!)}}
   constructor(private http:HttpClient) { }
 

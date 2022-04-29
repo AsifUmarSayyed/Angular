@@ -1,65 +1,22 @@
 
 <div id="body">
-<nav class="navbar navbar-expand-lg navbar-light bg-dark">
-    <div class="container-fluid">
-      <a class="navbar-brand  " style="font-size: 25px;" href="#">Batch 6 foodverse</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-          <!-- <li class="nav-item">
-            <a class="nav-link  active " aria-current="page" href="#">Home</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Link</a>
-          </li>
-          
-          <li class="nav-item">
-            <a class="nav-link ">Disabled</a>
-          </li> -->
-        </ul>
-        <form class="d-flex">
-          <!-- <i class="fas fa-user-alt m-2"></i> -->
-          
-            <a class="nav-link "><img class="user" src={{this.currentUser?.image}} height="50" alt="">{{this.currentUser?.name}} | <span (click)="logout()">Logout</span></a>
-        
-           </form>
-      </div>
-    </div>
-  </nav>
+<app-nav></app-nav>
 
-  
-  <div class="container">
-    <mdb-icon  style="margin: 10px; margin-left: 93%; color: rgb(34, 150, 228); font-size:55px;" (click)="addmodel()" fas icon="plus-circle"></mdb-icon>
+    <mdb-icon class="add" style="" (click)="addmodel()" fas icon="plus-circle"></mdb-icon>
     <!-- <a class="btn btn-primary" style="margin: 10px; margin-left: 85%; font-size: 15px;" (click)="addmodel()" >+ Add Product</a> -->
  
-    <div class="row">
-     
-      <!-- <div class="col-lg-3" *ngFor="let item of this.list.products | paginate: { itemsPerPage: noItem, currentPage: p} ">
-        <div class="card" style="width: 18rem;" >
-            <img src="{{item.image}}" class="card-img-top" height="250px" alt="...">
-            <div class="card-body">
-              <h5 class="card-title">{{item.title}}</h5>
-              <p class="card-text">{{item.price}}</p>
-              <p class="card-text">{{item.description.substring(0,20)}}...</p>
-              <a style="margin-right: 10px;" (click)="delete(item)" class="btn btn-danger">Delete</a>
-              <a  (click)="Updatemodel(item)" class="btn btn-success">Update</a>
-            </div>
-          </div>
-      </div> -->
-
-       <!-- table -->
+    <div class="container">
+        
 <table class="table">
   <thead>
     <tr>
       <th scope="col">#</th>
       <th scope="col">Name</th>
-      <th scope="col">Image</th>
-      <th scope="col">Date</th>
+     <th scope="col"class="timg">Image</th>
+     <th class="timg" scope="col">Date</th>
       <th scope="col">Price</th>
-      <th scope="col">Category</th>
-      <th scope="col">Description</th>
+      <th class="veryLow" scope="col">Category</th>
+      <th class="timg" scope="col">Description</th>
       <th scope="col">Delete</th>
       <th scope="col">Update</th>
     </tr>
@@ -68,46 +25,50 @@
     <ng-container   *ngFor="let item of this.list.products | paginate: { itemsPerPage: noItem, currentPage: p} index as index">
     <tr >
       <td>{{index+1}}</td>
-      <td> <img src="{{item.image}}"  height="100px" width="100px" alt="..."></td>      
+
       <td>{{item.title}}</td> 
-      <td>{{item.date}}</td>      
+    <td class="timg"> <img src="{{item.image}}"  height="100px" width="100px" alt="..."></td>    
+    <td  class="timg">{{item.date}}</td>    
+   
+   
       <td>{{item.price}}</td>
-      <td>{{item.category}}</td>
-      <td>{{item.description}}</td>
-      <td><mdb-icon  (click)="delete(item)" style="color: red; font-size:25px;" fas icon="trash-alt"></mdb-icon>
+      <td  class="veryLow">{{item.category}}</td>
+      <td class="timg">{{item.description}}</td>
+      <td><mdb-icon  (click)="delete(item)" style="color: red; " fas icon="trash-alt"></mdb-icon>
        
-      <td><mdb-icon  (click)="Updatemodel(item)" style="color: green; font-size:25px;" fas icon="edit"></mdb-icon> </td>
+      <td><mdb-icon  (click)="Updatemodel(item)" style="color: green; " fas icon="edit"></mdb-icon> </td>
      
     </tr>
   </ng-container>
   </tbody>
 </table> 
-      
-    </div>
-  </div>
+</div> 
+ 
 
  
 
 <div class="row m-3" >
-  <div class="col-lg-1">
+  <div class="col">
    
-    <select (click)="itemPerPage()" id="select" class="browser-default custom-select"> 
-     
-      <option selected value="5">5</option>
+    <select (click)="itemPerPage()" id="select" class="browser-default "> 
+      <option selected value="2">2</option>
+      <option  value="5">5</option>
       <option value="10">10</option>
       <option value="20">20</option>
+      <option value={{list.products.length}}>All</option>
     </select>
-   
+    
   </div>
+  
   <div class="col-lg-8">
    
-  <p>itemsPerPage</p>
+    <p>itemsPerPage</p>
    
   </div>
-  <div class="col-lg-3">
+  <div class="col">
 	<pagination-controls  (pageChange)="p = $event"></pagination-controls>
 </div>
-</div>
+
 </div>
 
 
@@ -177,7 +138,9 @@
 
 
  </div>
-
-
-
  
+
+
+
+       
+        

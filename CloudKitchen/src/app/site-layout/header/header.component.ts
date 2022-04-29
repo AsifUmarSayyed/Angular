@@ -47,7 +47,7 @@ export class HeaderComponent implements OnInit {
     // }
 
     this.http
-      .get<any>(`http://localhost:3000/signupUsers/` + this.lSuser)
+      .get<any>(`http://192.168.0.120:3000/signupUsers/` + this.lSuser)
       .subscribe((data) => {
         this.userData = data;
       });
